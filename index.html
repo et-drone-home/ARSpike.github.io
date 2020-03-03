@@ -4,11 +4,12 @@
 <script src="https://raw.githack.com/jeromeetienne/AR.js/1.7.5/aframe/build/aframe-ar.js"></script>
   <body style='margin : 0px; overflow: hidden;'>
     <a-scene embedded arjs>
-  	<a-marker preset="hiro">
       <a-assets>
         <a-asset-item id="beer-obj" src="assets/beerPint/Pint_Glass.obj"></a-asset-item>
         <a-asset-item id="beer-mtl" src="assets/beerPint/Pint_Glass.mtl"></a-asset-item>
       </a-assets>
+  	<a-marker preset="hiro">
+
       <!-- Using the asset management system. -->
       <a-entity obj-model="obj: #beer-obj; mtl: #beer-mtl"></a-entity>
       <!-- <a-box src position='0 0.5 0' material='color: yellow;'></a-box> -->
