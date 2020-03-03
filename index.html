@@ -1,14 +1,16 @@
 <!doctype HTML>
 <html>
-<script src="https://aframe.io/releases/1.0.0/aframe.min.js"></script>
-<script src="https://raw.githack.com/jeromeetienne/AR.js/1.7.5/aframe/build/aframe-ar.js"></script>
+<script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
+<script src=”https://jeromeetienne.github.io/AR.js/aframe/build/aframe-ar.js"></script>
   <body style='margin : 0px; overflow: hidden;'>
     <a-scene embedded arjs>
-  	<a-marker type='barcode' value='5'>
+  	<a-marker preset=’hiro’>
+      
       <a-entity 
-        obj-model=”obj: url(/assets/Lamborghini_Aventador.obj); 
-        mtl: url(/assets/Lamborghini_Aventador.mtl)”>
+          obj-model=”obj: url(/assets/Lamborghini_Aventador.obj); 
+          mtl: url(/assets/Lamborghini_Aventador.mtl)”>
       </a-entity>
+
   	</a-marker>
   	<a-entity camera></a-entity>
     </a-scene>
