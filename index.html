@@ -5,7 +5,10 @@
   <body style='margin : 0px; overflow: hidden;'>
     <a-scene embedded arjs>
   	<a-marker type='barcode' value='5'>
-            <a-sphere position='0 1 0' radius = "1" material='color: white'></a-sphere>
+      <a-entity 
+        obj-model=”obj: url(/assets/Lamborghini_Aventador.obj); 
+        mtl: url(/assets/Lamborghini_Aventador.mtl)”>
+      </a-entity>
   	</a-marker>
   	<a-entity camera></a-entity>
     </a-scene>
