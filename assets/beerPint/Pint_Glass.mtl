@@ -15,18 +15,6 @@ newmtl foam_white
 	map_Ka foam_white.png
 	map_Kd foam_white.png
 
-newmtl Blonde_Ale
-	Ns 100.0000
-	Ni 1.5000
-	d 0.3000
-	Tr 0.3000
-	Tf 0.3000 0.3000 0.3000 
-	illum 2
-	Ka 0.9961 0.4745 0.1176
-	Kd 0.9961 0.4745 0.1176
-	Ks 1.0000 1.0000 1.0000
-	Ke 0.0000 0.0000 0.0000
-
 newmtl Glass
 	Ns 100.0000
 	Ni 1.5000
@@ -53,38 +41,15 @@ newmtl foam
 	map_Ka foam.png
 	map_Kd foam.png
 
-newmtl Porter
-	Ns 100.0000
-	Ni 1.5000
-	d 0.3000
-	Tr 0.3000
-	Tf 0.3000 0.3000 0.3000 
-	illum 2
-	Ka 0.0078 0.0078 0.0078
-	Kd 0.0078 0.0078 0.0078
-	Ks 1.0000 1.0000 1.0000
-	Ke 0.0000 0.0000 0.0000
 
-newmtl Irish_Red_Ale
+newmtl Blonde_Ale
 	Ns 100.0000
 	Ni 1.5000
 	d 0.3000
 	Tr 0.3000
 	Tf 0.3000 0.3000 0.3000 
 	illum 2
-	Ka 0.7216 0.0157 0.0000
-	Kd 0.7216 0.0157 0.0000
-	Ks 1.0000 1.0000 1.0000
-	Ke 0.0000 0.0000 0.0000
-
-newmtl Pale_Lager
-	Ns 100.0000
-	Ni 1.5000
-	d 0.3000
-	Tr 0.3000
-	Tf 0.3000 0.3000 0.3000 
-	illum 2
-	Ka 0.9961 0.5843 0.1176
-	Kd 0.9961 0.5843 0.1176
+	Ka 0.9961 0.4745 0.1176
+	Kd 0.9961 0.4745 0.1176
 	Ks 1.0000 1.0000 1.0000
 	Ke 0.0000 0.0000 0.0000
