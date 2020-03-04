@@ -2,8 +2,12 @@
 <html>
   <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
   <script src="https://rawcdn.githack.com/AR-js-org/AR.js/a5619a021e6ff40427ff8f9c62169e99a390f56b/aframe/build/aframe-ar.min.js"></script>
+  <script type="text/javascript" src="https://cdn.rawgit.com/donmccurdy/aframe-extras/v6.0.0/dist/aframe-extras.min.js"></script>
+  <script src="https://unpkg.com/aframe-animation-component@5.1.2/dist/aframe-animation-component.min.js"></script>
+
+
     <body style='margin : 0px; overflow: hidden;'>
-      <a-scene embedded renderer='antialias: true; alpha: true; logarithmicDepthBuffer: true' arjs='debugUIEnabled: false; sourceType: webcam; maxDetectionRate: 30; detectionMode: mono_and_matrix; matrixCodeType: 4x4;'>
+      <a-scene vr-mode-ui="enabled: false" embedded renderer='antialias: true; alpha: true; logarithmicDepthBuffer: true' arjs='debugUIEnabled: false; sourceType: webcam; maxDetectionRate: 30; detectionMode: mono_and_matrix; matrixCodeType: 4x4;' artoolkit='sourceType: webcam; detectionMode: mono; maxDetectionRate: 90;' arjs='debugUIEnabled: false;detectionMode: mono_and_matrix; matrixCodeType: 3x3;'>
       <a-assets>
          <a-asset-item id="beer-obj" src="assets/beerPint/Pint1_Glass.obj"></a-asset-item>
         <a-asset-item id="beer-mtl" src="assets/beerPint/Pint1_Glass.mtl"></a-asset-item>
