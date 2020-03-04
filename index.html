@@ -1,19 +1,19 @@
 <!doctype HTML>
 <html>
 <script src="https://aframe.io/releases/1.0.0/aframe.min.js"></script>
-<script src="https://raw.githack.com/jeromeetienne/AR.js/1.7.5/aframe/build/aframe-ar.js"></script>
+<script src="https://raw.githack.com/jeromeetienne/AR.js/2.0.8//aframe/build/aframe-ar.js"></script>
   <body style='margin : 0px; overflow: hidden;'>
     <a-scene embedded arjs>
       <a-assets>
         <!-- <a-asset-item id="beer-obj" src="assets/beerPint/Pint_Glass.obj"></a-asset-item>
         <a-asset-item id="beer-mtl" src="assets/beerPint/Pint_Glass.mtl"></a-asset-item> -->
-        <a-asset-item id="beer-obj" src="assets/Lamborghini/Lamborghini_Aventador.obj"></a-asset-item>
-        <a-asset-item id="beer-mtl" src="assets/Lamborghini/Lamborghini_Aventador.mtl"></a-asset-item>
+        <!-- <a-asset-item id="beer-obj" src="assets/Lamborghini/Lamborghini_Aventador.obj"></a-asset-item>
+        <a-asset-item id="beer-mtl" src="assets/Lamborghini/Lamborghini_Aventador.mtl"></a-asset-item> -->
       </a-assets>
 
       <!-- Using the asset management system. -->
-      <a-entity obj-model="obj: #beer-obj; mtl: #beer-mtl"></a-entity>
-      <!-- <a-box src position='0 0.5 0' material='color: yellow;'></a-box> -->
+      <!-- <a-entity obj-model="obj: #beer-obj; mtl: #beer-mtl"></a-entity> -->
+      <a-box src position='0 0.5 0' material='color: yellow;'></a-box>
   	<a-entity camera></a-entity>
     </a-scene>
   </body>
