@@ -1,15 +1,15 @@
 <!doctype HTML>
 <html>
-<script src="https://aframe.io/releases/1.0.0/aframe.min.js"></script>
-<script src="https://raw.githack.com/jeromeetienne/AR.js/2.0.8//aframe/build/aframe-ar.js"></script>
-  <body style='margin : 0px; overflow: hidden;'>
-    <a-scene embedded arjs>
-      <a-assets>
-        <!-- <a-asset-item id="beer-obj" src="assets/beerPint/Pint_Glass.obj"></a-asset-item>
+  <script src="https://aframe.io/releases/0.9.0/aframe.min.js"></script>
+  <script src="https://raw.githack.com/jeromeetienne/AR.js/2.0.8/aframe/build/aframe-ar.js"></script>
+    <body style='margin : 0px; overflow: hidden;'>
+      <a-scene embedded arjs>
+     <!-- <a-assets>
+         <a-asset-item id="beer-obj" src="assets/beerPint/Pint_Glass.obj"></a-asset-item>
         <a-asset-item id="beer-mtl" src="assets/beerPint/Pint_Glass.mtl"></a-asset-item> -->
         <!-- <a-asset-item id="beer-obj" src="assets/Lamborghini/Lamborghini_Aventador.obj"></a-asset-item>
-        <a-asset-item id="beer-mtl" src="assets/Lamborghini/Lamborghini_Aventador.mtl"></a-asset-item> -->
-      </a-assets>
+        <a-asset-item id="beer-mtl" src="assets/Lamborghini/Lamborghini_Aventador.mtl"></a-asset-item> 
+      </a-assets>  -->
 
       <!-- Using the asset management system. -->
       <!-- <a-entity obj-model="obj: #beer-obj; mtl: #beer-mtl"></a-entity> -->
@@ -17,7 +17,12 @@
 
         <!-- Using the asset management system. -->
         <!-- <a-entity obj-model="obj: #beer-obj; mtl: #beer-mtl"></a-entity> -->
-        <a-box position='0 0.5 0' material='color: yellow;'></a-box>
+        <a-box 
+                  position='0 0.5 0' 
+                  material='color: yellow;'
+                  scale="0.05 0.05 0.05"
+                  rotation="0 180 0"
+                  animation="property: scale; to: 0.025 0.05 0.05; dir: alternate; dur: 1000; loop: true;">></a-box>
       </a-marker>
   	<a-entity camera></a-entity>
     </a-scene>
