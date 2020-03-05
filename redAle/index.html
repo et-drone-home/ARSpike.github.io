@@ -1,0 +1,17 @@
+<!doctype HTML>
+<html>
+  <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
+  <script src="https://rawcdn.githack.com/AR-js-org/AR.js/a5619a021e6ff40427ff8f9c62169e99a390f56b/aframe/build/aframe-ar.min.js"></script>
+  <script src="https://rawgit.com/donmccurdy/aframe-extras/master/dist/aframe-extras.loaders.min.js"></script>
+    <body style='margin : 0px; overflow: hidden;'>
+      <a-scene arjs artoolkit='sourceType: webcam;' renderer="sortObjects: true; colorManagement: true; gammaOutput: true; precision: low; detectionMode: mono_and_matrix; matrixCodeType: 4x4;">
+      <a-assets>
+         <a-asset-item id="beer-obj" src="assets/lager.gltf"></a-asset-item>
+      </a-assets> 
+      <a-marker preset="hiro">
+        <a-gltf-model scale="0.2 0.2 0.2" src="#beer-obj" animation="property: rotation; to: 0 0 360; loop: true; dur: 3000; easing: easeInOutQuad;"></a-gltf-model>
+      </a-marker>
+  	<a-entity camera></a-entity>
+    </a-scene>
+  </body>
+</html>
