@@ -1,79 +1,101 @@
-const switchCameraButton = document.getElementById('switchCameraButton');
-let options = [null];
-let selected = 0;
-let currentStream;
-function stopMediaTracks(stream) {
-  stream.getTracks().forEach(track => {
-    track.stop();
-  });
-}
-function gotDevices(mediaDevices) {
-  let count = 1;
-  let nextOptions = []
-  mediaDevices.forEach(mediaDevice => {
-    if (mediaDevice.kind === 'videoinput') {
-      const nextOption = {
-        id: mediaDevice.deviceId,
-        label: mediaDevice.label || `Camera ${count++}`,
-        back: mediaDevice.label.includes("back") || mediaDevice.label.includes("Back")
-      }
-      nextOptions.push(nextOption)
-    }
-  });
-  if (optionsChanged(nextOptions)) {
-    options = nextOptions
+let switchCameraButton;
+let video;
+let mediaController;
+class MediaController{
+  constructor(stream, videoTracks) {
+    this.selected = 0,
+    this.options = null
+    this.currentStream = stream
+    const videoTrack = (videoTracks || [])[0] || {}
+    this.handleSwitchCamera = this.handleSwitchCamera.bind(this)
+    this.stopMediaTracks = this.stopMediaTracks.bind(this)
+    this.setDevices = this.setDevices.bind(this)
+    this.optionsChanged = this.optionsChanged.bind(this)
+    this.useCamera = this.useCamera.bind(this)
+    this.trySwitchCamera = this.trySwitchCamera.bind(this)
+    switchCameraButton.addEventListener("click", this.handleSwitchCamera)
+    navigator.mediaDevices.enumerateDevices()
+        .then((devices) => {
+          this.setDevices(devices, videoTrack.label)
+        })
   }
-}
-const optionsChanged = nextOptions => {
-  return nextOptions.some((option, o) => option.id != (options[o] || {}).id)
-}
-const setCamera = selection => {
-  const videoConstraints = {};
-  if (selection.id === '') {
-    videoConstraints.facingMode = 'environment';
-  } else {
-    videoConstraints.deviceId = { exact: selection.id };
-  }
-  const constraints = {
-    video: videoConstraints,
-    audio: false
-  };
-  navigator.mediaDevices
-    .getUserMedia(constraints)
-    .then(stream => {
-      currentStream = stream;
-      const video = document.getElementById("arjs-video")
-      var scene = document.getElementById("scene")
-      video.className = selection.back ? "" : "mirrored"
-      scene.className = selection.back ? "" : "mirrored"
-      video.srcObject = stream;
-      return navigator.mediaDevices.enumerateDevices();
-    })
-    .catch(error => {
-      console.error(error);
+  stopMediaTracks(stream) {
+    stream.getTracks().forEach(track => {
+      track.stop();
     });
-}
-switchCameraButton.addEventListener('click', event => {
-  if (typeof currentStream !== 'undefined') {
-    stopMediaTracks(currentStream);
   }
-  selected++
-  if (selected >= options.length) selected = 0
-  setCamera(options[selected])
-});
-const refreshDevices = () => {
-  const header = document.getElementById("header-text")
-  header.className += " red"
-  navigator.mediaDevices.enumerateDevices().then(gotDevices);
+  setDevices(devices, currentLabel){
+    let count = 1;
+    let nextOptions = []
+    devices.forEach(mediaDevice => {
+      if (mediaDevice.kind === 'videoinput') {
+        const nextOption = {
+          id: mediaDevice.deviceId,
+          label: mediaDevice.label || `Camera ${count++}`,
+          back: mediaDevice.label.includes("back") || mediaDevice.label.includes("Back")
+        }
+        nextOptions.push(nextOption)
+      }
+    });
+    if (this.optionsChanged(nextOptions)) {
+      this.options = nextOptions
+    }
+    this.selected = this.options.findIndex(option => { return option.label == currentLabel}) <= 0 ? 0 : 1
+  }
+  optionsChanged(nextOptions){
+    if (this.options == null) return true
+    return nextOptions.some((option, o) => option.id != (this.options[o] || {}).id)
+  }
+  useCamera(camera){
+    const videoConstraints = {};
+    if (camera.id === '') {
+      videoConstraints.facingMode = 'environment';
+    } else {
+      videoConstraints.deviceId = { exact: camera.id };
+    }
+    const constraints = {
+      video: videoConstraints,
+      audio: false
+    };
+    if (typeof this.currentStream !== 'undefined') {
+      this.stopMediaTracks(this.currentStream);
+    }
+    navigator.mediaDevices
+      .getUserMedia(constraints)
+      .then(stream => {   
+        this.currentStream = stream;
+        const video = document.getElementById("arjs-video")
+        var scene = document.getElementById("scene")
+        video.className = camera.back ? "" : "mirrored"
+        scene.className = camera.back ? "" : "mirrored"
+        video.srcObject = stream;
+      })
+      .catch(error => {
+        console.error({error});
+      });
+  }
+  handleSwitchCamera(e){
+    this.trySwitchCamera();
+  }
+  trySwitchCamera(){
+    if (this.options != null && this.options.length > 1) {
+      this.selected++
+      if (this.selected >= this.options.length) this.selected = 0
+      this.useCamera(this.options[this.selected])
+    }
+  }
 }
-const setup = () => {
-  navigator.mediaDevices.enumerateDevices().then(gotDevices);
-  document.getElementById("arjs-video").className += " mirrored"
-  setCamera(options[0])
+function setVideoElement() {
+  video = document.getElementById("arjs-video")
+  if (video == null) {
+    setTimeout(() => {
+      setVideoElement();
+    },1000)
+  } else {
+    switchCameraButton = document.getElementById('switchCameraButton');
+    mediaController = new MediaController(video.srcObject, video.videoTracks);
+  }
 }
-setTimeout(() => {
-  setup();
-  setTimeout(() => {
-    setup();
-  }, 1500)
-}, 1500)
+document.addEventListener('DOMContentLoaded', function(event){
+  setVideoElement()
+})
