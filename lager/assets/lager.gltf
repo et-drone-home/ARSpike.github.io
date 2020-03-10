@@ -62,11 +62,7 @@
     "materials" : [
         {
             "doubleSided" : true,
-            "emissiveFactor" : [
-                0,
-                0,
-                0
-            ],
+           
             "name" : "foam_white",
             "pbrMetallicRoughness" : {
                 "baseColorTexture" : {
@@ -88,29 +84,21 @@
                 1,
                 0.21999999999999998
               ],
-              "baseColorTexture": {
-                "index": 0,
-                "texCoord": 0
-              },
-              "roughnessFactor": 1
+              "metallicFactor" : 0.3,
+              "roughnessFactor": 0.6
             }
           },
         {
             "doubleSided" : true,
-            "emissiveFactor" : [
-                0,
-                0,
-                0
-            ],
             "name" : "Pale_Lager",
             "pbrMetallicRoughness" : {
                 "baseColorFactor" : [
                     0.9961000084877014,
                     0.5842999815940857,
                     0.11760000139474869,
-                    1
+                    0.89999
                 ],
-                "metallicFactor" : 0,
+                "metallicFactor" : 0.2,
                 "roughnessFactor" : 0.6666666865348816
             }
         }

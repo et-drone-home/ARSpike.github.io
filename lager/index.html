@@ -3,15 +3,31 @@
   <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
   <script src="https://rawcdn.githack.com/AR-js-org/AR.js/a5619a021e6ff40427ff8f9c62169e99a390f56b/aframe/build/aframe-ar.min.js"></script>
   <script src="https://rawgit.com/donmccurdy/aframe-extras/master/dist/aframe-extras.loaders.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="index.css">
     <body style='margin : 0px; overflow: hidden;'>
-      <a-scene arjs artoolkit='sourceType: webcam;' renderer="sortObjects: true; colorManagement: true; gammaOutput: true; precision: low; detectionMode: mono_and_matrix; matrixCodeType: 4x4;">
-      <a-assets>
-         <a-asset-item id="beer-obj" src="assets/lager.gltf"></a-asset-item>
-      </a-assets> 
-      <a-marker preset="hiro">
-        <a-gltf-model scale=".2 .2 .2" src="#beer-obj"></a-gltf-model>
-      </a-marker>
-  	<a-entity camera></a-entity>
-    </a-scene>
+        <h1 id="header-text" class="header-text ">I GOT VERIFIED!</h1>
+        <div id="switchCameraButton" class="switch-button">
+            <img  src="assets/switch-camera.png" width="30px"/>
+        </div>
+        <a-scene onclick="refreshDevices()"
+            id="scene"
+            vr-mode-ui="enabled: false"
+            arjs
+            artoolkit='sourceType: webcam;'
+            renderer="sortObjects: true; colorManagement: true; colorManagement: true; precision: low; detectionMode: mono_and_matrix; matrixCodeType: 4x4;">
+            <a-assets>
+                <a-asset-item id="beer-obj" src="assets/lager.gltf"></a-asset-item>
+            </a-assets> 
+            <a-marker type="pattern" url="assets/pattern-qr-code-lager.patt">
+                <a-gltf-model 
+                scale="0.2 0.2 0.2" 
+                src="#beer-obj" 
+                rotation="270 0 0"
+                animation="property: rotation; to: 270 0 360; loop: true; dur: 3000; easing: easeInOutQuad;"
+                ></a-gltf-model>
+              </a-marker>
+            <a-entity class="ok" camera></a-entity>
+        </a-scene>
   </body>
+  <script src="./app.js"></script>
 </html>
